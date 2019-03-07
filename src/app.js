@@ -1,8 +1,11 @@
 import { Todo } from './components/todo';
+import 'reset-css';
+import 'normalize.css';
+import './styles/style.css';
 
 export class App {
   constructor() {
-    this.heading = 'Todos';
+    this.heading = 'A Simple Todo List';
     this.todos = [];
     this.todoDescription = '';
   }

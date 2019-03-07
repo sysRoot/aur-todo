@@ -1,18 +1,42 @@
 <template>
-  <h1>${heading}</h1>
-
-  <form submit.trigger="addTodo()">
-    <input type="text" value.bind="todoDescription" />
-    <button type="submit">Add Todo</button>
-    <button click.trigger="removeTodo(todo)">Remove</button>
-  </form>
-
-  <ul>
-    <li repeat.for="todo of todos">
-      <!-- <input type="checkbox" checked.bind="todo.done" /> -->
-      <span click.trigger="toggleComplete(todo)" css="text-decoration: ${todo.done ? 'line-through' : 'none'}">
-        ${todo.description}
-      </span>
-    </li>
-  </ul>
+  <div class="appContainer">
+    <h1>${heading}</h1>
+    <div class="todoForm">
+      <form submit.trigger="addTodo()">
+        <input
+          name="newItem"
+          class="inputField"
+          type="text"
+          id="todo"
+          value.bind="todoDescription"
+          required
+        />
+        <label>
+          <span>Input a Todo</span>
+        </label>
+        <div class="formButtons">
+          <input type="submit" value="Add To List" class="subBtn" />
+          <input
+            type="button"
+            click.trigger="removeTodo(todo)"
+            value="Clear Complete"
+            class="clearBtn"
+          />
+        </div>
+      </form>
+    </div>
+  
+    <ul class="outputList">
+      <li class="listItem" repeat.for="todo of todos">
+        <!-- <input type="checkbox" checked.bind="todo.done" /> -->
+        <p
+          class="${todo.done ? 'completedTrue' : ''}"
+          click.trigger="toggleComplete(todo)"
+          css="text-decoration: ${todo.done ? 'line-through' : 'none'}"
+        >
+          ${todo.description}
+        </p>
+      </li>
+    </ul>
+  </div>
 </template>
