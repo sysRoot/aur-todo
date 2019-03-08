@@ -1,13 +1,29 @@
+import { inject } from 'aurelia-dependency-injection';
+import { Store } from 'aurelia-store';
+import { initialState } from './components/state';
+
 import { Todo } from './components/todo';
+
 import 'reset-css';
 import 'normalize.css';
 import './styles/style.css';
 
+@inject(Store)
 export class App {
-  constructor() {
+  constructor(store) {
     this.heading = 'A Simple Todo List';
     this.todos = [];
     this.todoDescription = '';
+  }
+
+  bind() {
+    this.subscription = this.store.state.subscribe(
+      (state) => this.state = state
+    );
+  }
+
+  unbind() {
+    this.subscription.unsubscribe();
   }
 
   addTodo() {
